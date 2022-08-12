@@ -4,7 +4,7 @@ import (
 	"crud-golang/middlewares"
 	"crud-golang/models"
 	"crud-golang/pkg/e"
-	"crud-golang/pkg/response"
+	// "crud-golang/pkg/response"
 	"crud-golang/pkg/utils"
 	"crud-golang/repo"
 	"net/http"
@@ -22,12 +22,12 @@ func Hash(password string) ([]byte, error) {
 func AuthHandler(c *gin.Context) {
 	var code int
 	var user models.User
-	var res response.ResponseMessage
+	// var res response.ResponseMessage
 
 	if binderr := c.ShouldBindJSON(&user); binderr != nil {
 		log.Error().Err(binderr).
 			Msg("Error occurred while binding request data")
-		response.SendResponse(res.)
+		// response.SendResponse(res.)
 		c.JSON(http.StatusUnprocessableEntity, gin.H{
 			"message": binderr.Error(),
 		})
@@ -84,7 +84,7 @@ func CreateUser(c *gin.Context) {
 
 	hashedPassword, hashErr := Hash(user.Password)
 	if hashErr != nil {
-		code := http.StatusBadRequest
+		code := e.ERROR_HASH_PASSWORD
 		c.JSON(http.StatusBadRequest, gin.H{
 			"code": code,
 			"msg":  e.GetMsg(code),
@@ -96,7 +96,7 @@ func CreateUser(c *gin.Context) {
 
 	userInfo, err := repo.CreateUser(&user)
 	if err != nil {
-		code := http.StatusBadRequest
+		code := e.ERROR_UNDIFINE
 		c.JSON(http.StatusBadRequest, gin.H{
 			"code": code,
 			"msg":  e.GetMsg(code),

@@ -2,19 +2,17 @@ package models
 
 import (
 	"github.com/google/uuid"
-	"gorm.io/gorm"
 )
 
 type User struct {
 	// gorm.Model
-	ID        string         `gorm:"primaryKey" json:"id"`
-	Username  string         `json:"username"`
-	Password  string         `json:"password" `
-	Email     string         `json:"email"`
-	NickName  string         `json:"nick_name"`
-	CreatedAt int64          `gorm:"autoCreateTime:milli" json:"created_at"`
-	UpdatedAt int64          `gorm:"autoUpdateTime:milli" json:"updated_at"`
-	DeletedAt gorm.DeletedAt `json:"deleted_at"`
+	ID        string `gorm:"primaryKey" json:"id"`
+	Username  string `json:"username"`
+	Password  string `json:"password" `
+	Email     string `json:"email"`
+	NickName  string `json:"nick_name"`
+	CreatedAt int64  `gorm:"autoCreateTime:milli" json:"created_at"`
+	UpdatedAt int64  `gorm:"autoUpdateTime:milli" json:"updated_at"`
 }
 
 // type UserResponse struct {

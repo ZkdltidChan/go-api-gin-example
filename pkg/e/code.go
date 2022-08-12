@@ -10,4 +10,6 @@ const (
 	ERROR_AUTH_TOKEN               = 20003
 	ERROR_AUTH                     = 20004
 	ERROR_USER_NOT_FOUND           = 20005
+	ERROR_HASH_PASSWORD            = 20006
+	ERROR_UNDIFINE                 = 501
 )

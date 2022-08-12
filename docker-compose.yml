@@ -1,0 +1,13 @@
+version: "3"
+services:
+    db:
+        image: postgres:latest
+        container_name: postgres-go-api-example
+        restart: always
+        ports:
+            - "${POSTGRES_PORT}:${POSTGRES_PORT}"
+        environment:
+            POSTGRES_USER: ${POSTGRES_USER}
+            POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+        volumes:
+            - $PWD/:/postgresql/data/:/var/lib/postgresql/data

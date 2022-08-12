@@ -9,6 +9,8 @@ var MsgFlags = map[int]string{
 	ERROR_AUTH_TOKEN:               "Token create error",
 	ERROR_AUTH:                     "Token error 2",
 	ERROR_USER_NOT_FOUND:           "ERROR_USER_NOT_FOUND",
+	ERROR_HASH_PASSWORD:            "ERROR_HASH_PASSWORD",
+	ERROR_UNDIFINE: 	"ERROR_UNDIFINE",
 }
 
 func GetMsg(code int) string {
