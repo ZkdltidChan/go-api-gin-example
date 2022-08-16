@@ -58,7 +58,7 @@ func AuthHandler(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{
 			"code": code,
 			"msg":  e.GetMsg(code),
-			"data": gin.H{"token": tokenString},
+			"data": gin.H{"token": tokenString, "username": vu.Username},
 		})
 		return
 	}

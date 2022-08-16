@@ -91,6 +91,6 @@ func AutoMigrateDB() error {
 		return connErr
 	}
 	// Add new models here
-	err := db.AutoMigrate(&models.User{})
+	err := db.AutoMigrate(&models.User{}, &models.Admin{})
 	return err
 }

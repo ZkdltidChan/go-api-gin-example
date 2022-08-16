@@ -31,3 +31,23 @@ func Login(user *models.User) (*models.User, error) {
 	}
 	return &uu, nil
 }
+
+func AdminLogin(admin *models.Admin) (*models.Admin, error) {
+	var uu models.Admin
+	db, conErr := utils.GetDatabaseConnection()
+	if conErr != nil {
+		log.Err(conErr).Msg("Error occurred while getting a DB connection from the connection pool")
+		return nil, conErr
+	}
+
+	var err error
+	err = db.Model(admin).Where("username = ?", admin.Username).Take(&uu).Error
+	if err != nil {
+		return nil, err
+	}
+	err = VerifyPassword(uu.Password, admin.Password)
+	if err != nil {
+		return nil, err
+	}
+	return &uu, nil
+}

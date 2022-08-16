@@ -3,13 +3,19 @@ package routers
 import (
 	"crud-golang/controllers"
 	"crud-golang/middlewares"
+
 	"github.com/gin-gonic/gin"
 )
 
 // Function to setup routers and router groups
 func SetupRouters(app *gin.Engine) {
 	v1 := app.Group("/v1")
+	v1.Use(middlewares.CORSMiddleware())
 	{
+		v1.GET("/admin", middlewares.JWTAuthMiddleware(), controllers.GetAllAdmins)
+		v1.POST("/admin/register", controllers.CreateAdmin)
+		v1.POST("/admin/login", controllers.AdminAuthHandler)
+
 		v1.GET("/users", controllers.GetAllUsers)
 		v1.GET("/users/auth", middlewares.JWTAuthMiddleware(), controllers.GetAllUsers)
 		// v1.POST("all", controllers.SendMailUsingMailer)
