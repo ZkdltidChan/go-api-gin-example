@@ -16,9 +16,11 @@ services:
         build: .
         restart: always
         ports:
-          - ${GIN_PORT}:${GIN_PORT} #host:docker-container
+            - ${GIN_PORT}:${GIN_PORT} #host:docker-container
+        environment:
+            POSTGRES_HOST: db
         depends_on:
-          - db
+            - db
         volumes:
-          - .:/go/src/go-api-gin-example
+            - .:/go/src/go-api-gin-example
         command: go run main.go
